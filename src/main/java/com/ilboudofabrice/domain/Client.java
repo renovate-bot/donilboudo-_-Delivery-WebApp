@@ -1,5 +1,7 @@
 package com.ilboudofabrice.domain;
 
+import com.ilboudofabrice.util.RandomGUIDGenerator;
+
 /**
  * Created by filboudo on 2017-02-16.
  */
@@ -10,6 +12,15 @@ public class Client {
     private String phone;
     private String country;
     private String city;
+
+    public Client(String name, String phone, String address, String country, String city) {
+        this.id = RandomGUIDGenerator.generateRandomGUID();
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.country = country;
+        this.city = city;
+    }
 
     public String getId() {
         return id;

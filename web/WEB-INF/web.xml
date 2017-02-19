@@ -24,5 +24,13 @@
         <servlet-name>delivery</servlet-name>
         <url-pattern>/</url-pattern>
         <url-pattern>/home</url-pattern>
+
+        <!--client urls-->
+        <url-pattern>/newClient</url-pattern>
+        <url-pattern>/addClient</url-pattern>
+
+        <!--user urls-->
+        <url-pattern>/newUser</url-pattern>
+        <url-pattern>/addUser</url-pattern>
     </servlet-mapping>
 </web-app>

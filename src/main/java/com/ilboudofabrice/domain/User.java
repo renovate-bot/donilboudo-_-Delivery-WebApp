@@ -32,6 +32,16 @@ public class User {
         this.appAccesses = appAccesses;
     }
 
+    public User(String firstName, String lastName, String phone, String email, String login, String password) {
+        this.id = RandomGUIDGenerator.generateRandomGUID();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.login = login;
+        this.password = password;
+    }
+
     public String getId() {
         return id;
     }
