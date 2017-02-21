@@ -1,11 +1,15 @@
 package com.ilboudofabrice.domain;
 
+import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Entity;
 
 /**
  * Created by filboudo on 2017-02-16.
  */
-public class Delivery {
+@Entity
+public class Delivery implements Serializable{
     private String id;
     private String userFK;
     private String clientFK;
