@@ -32,5 +32,12 @@
         <!--user urls-->
         <url-pattern>/newUser</url-pattern>
         <url-pattern>/addUser</url-pattern>
+        <url-pattern>/deleteUser</url-pattern>
+        <url-pattern>/updateUser</url-pattern>
+        <url-pattern>/saveUser</url-pattern>
+
+        <!--login urls-->
+        <url-pattern>/loginFromWeb</url-pattern>
+        <url-pattern>/loginFromMobile</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -1,17 +1,13 @@
 package com.ilboudofabrice.domain;
 
-import java.io.Serializable;
 import java.util.List;
-
-import javax.persistence.Entity;
 
 import com.ilboudofabrice.util.RandomGUIDGenerator;
 
 /**
  * Created by filboudo on 2017-02-16.
  */
-@Entity
-public class User implements Serializable {
+public class User {
     private String id;
     private String firstName;
     private String lastName;
