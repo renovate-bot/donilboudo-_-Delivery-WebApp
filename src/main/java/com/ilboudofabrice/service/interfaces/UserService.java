@@ -1,5 +1,7 @@
 package com.ilboudofabrice.service.interfaces;
 
+import com.ilboudofabrice.domain.User;
+
 import java.util.List;
 
 /**
@@ -12,4 +14,6 @@ public interface UserService {
     void updateLoginAndPassword(String login, String password);
     void updatePassword(String password);
     void updateAppAccess(List<String> appAccesses);
+    User findUserByCredentials(String login, String password);
+
 }

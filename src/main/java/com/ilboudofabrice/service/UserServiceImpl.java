@@ -2,6 +2,7 @@ package com.ilboudofabrice.service;
 
 import java.util.List;
 
+import com.ilboudofabrice.domain.User;
 import com.ilboudofabrice.service.interfaces.UserService;
 
 /**
@@ -30,5 +31,9 @@ public class UserServiceImpl implements UserService {
 
     public void updateAppAccess(List<String> appAccesses) {
 
+    }
+
+    public User findUserByCredentials(String login, String password) {
+        return null;
     }
 }
