@@ -18,6 +18,7 @@ public class Delivery {
     private String senderReferences;
     private String receiverReferences;
     private String status;
+    private String receiverAddress;
 
     public String getId() {
         return id;
@@ -113,5 +114,13 @@ public class Delivery {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getReceiverAddress() {
+        return receiverAddress;
+    }
+
+    public void setReceiverAddress(String receiverAddress) {
+        this.receiverAddress = receiverAddress;
     }
 }

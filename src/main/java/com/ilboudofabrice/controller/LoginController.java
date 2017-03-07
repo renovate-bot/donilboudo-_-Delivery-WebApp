@@ -14,7 +14,7 @@ public class LoginController {
     private String adminPassword = "d47de916cacdb7bb6879a4013d8b7d7";
     private String adminLogin = "fabrice";
 
-    @RequestMapping(path = "/loginFromWeb")
+    @RequestMapping(path = {"/", "/loginFromWeb"})
     public String login(){
         return "login";
     }
