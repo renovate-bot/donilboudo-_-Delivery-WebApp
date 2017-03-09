@@ -10,13 +10,20 @@ import org.springframework.web.bind.annotation.RequestParam;
  * Created by filboudo on 2017-02-16.
  */
 @Controller
+@RequestMapping(path = {"/"})
 public class LoginController {
     private String adminPassword = "d47de916cacdb7bb6879a4013d8b7d7";
     private String adminLogin = "fabrice";
 
-    @RequestMapping(path = {"/", "/loginFromWeb"})
+    @RequestMapping(path = {"/"})
     public String login(){
         return "login";
+    }
+
+    @RequestMapping(path = {"/loginFromWeb"})
+    public String loginFromWeb(){
+
+        return "redirect:home";
     }
 
     @RequestMapping(path = "/loginFromMobile")

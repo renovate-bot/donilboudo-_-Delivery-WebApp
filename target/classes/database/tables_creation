@@ -1,0 +1,20 @@
+
+--
+-- DB CREATION
+--
+CREATE DATABASE delivery_manager;
+
+
+--
+-- TABLE `client`
+--
+
+CREATE TABLE `client` (
+  `CLIENT_ID` varchar(36) NOT NULL,
+  `CLIENT_NAME` varchar(255) NOT NULL,
+  `CLIENT_PHONE` varchar(255) NOT NULL,
+  `CLIENT_ADDRESS` varchar(255) NOT NULL,
+  `CLIENT_COUNTRY` varchar(255) DEFAULT NULL,
+  `CLIENT_CITY` varchar(255) DEFAULT NULL,
+  `CREATION_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;

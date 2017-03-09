@@ -9,15 +9,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     </head>
     <body>
-    <div class="login">
-        <h1>Login</h1>
-        <form method="post">
-            <input type="text" name="u" placeholder="Username" required="required" />
-            <input type="password" name="p" placeholder="Password" required="required" />
-            <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
-        </form>
-    </div>
+        <div class="login">
+            <h1 align="center">Login</h1>
+            <form method="post" action="${pageContext.request.contextPath}/loginFromWeb">
+                <table align="center">
+                    <tr>
+                        <td><input type="text" name="u" placeholder="Username" required="required" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" name="p" placeholder="Password" required="required" /></td>
+                    </tr>
+                    <tr>
+                        <td align="center"> <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
 
-    <script src="../WEB-INF/resources/js/index.js"></script>
+        <script src="../WEB-INF/resources/js/index.js"></script>
     </body>
 </html>

@@ -2,67 +2,89 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-       <context:component-scan base-package="com.ilboudofabrice.controller" />
+    <context:component-scan base-package="com.ilboudofabrice.controller"/>
 
-       <!-- Enables the Spring MVC @Controller programming model -->
-       <mvc:annotation-driven />
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <mvc:annotation-driven/>
+
+    <mvc:resources mapping="/images/**" location="classpath:/images/" />
+
+    <!-- database properties-->
+    <!--<util:properties id="databaseProperties" location="classpath:/database.properties"/>-->
 
     <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
-    <!--<property name="driverClassName" value="${db.driver}" />-->
-    <!--<property name="url" value="${db.url}" />-->
-    <!--<property name="username" value="${db.username}" />-->
-    <!--<property name="password" value="${db.password}" />-->
+        <!--<property name="driverClassName" value="${db.driver}"/>-->
+        <!--<property name="url" value="${db.url}"/>-->
+        <!--<property name="username" value="${db.username}"/>-->
+        <!--<property name="password" value="${db.password}"/>-->
     <!--</bean>-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/delivery_manager"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
+    </bean>
 
 
-    <!--&lt;!&ndash; Hibernate 5 SessionFactory Bean definition &ndash;&gt;-->
-    <!--<bean id="hibernate5AnnotatedSessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">-->
-    <!--<property name="dataSource" ref="dataSource" />-->
-    <!--<property name="annotatedClasses">-->
-    <!--<list>-->
-    <!--<value>com.ilboudofabrice.domain.Delivery</value>-->
-    <!--<value>com.ilboudofabrice.domain.Client</value>-->
-    <!--</list>-->
-    <!--</property>-->
-    <!--<property name="hibernateProperties">-->
-    <!--<props>-->
-    <!--<prop key="hibernate.dialect">${hibernate.dialect}</prop>-->
-    <!--<prop key="hibernate.show_sql">true</prop>-->
-    <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
-    <!--<prop key="maxwait">10000</prop>-->
-    <!--<prop key="maxidle">25</prop>-->
-    <!--<prop key="minidle">5</prop>-->
-    <!--<prop key="hibernate.cache.use_second_level_cache">true</prop>-->
-    <!--</props>-->
-    <!--</property>-->
-    <!--</bean>-->
+    <!-- Hibernate 5 SessionFactory Bean definition -->
+    <bean id="hibernate5AnnotatedSessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.ilboudofabrice.domain.Delivery</value>
+                <value>com.ilboudofabrice.domain.Client</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="maxwait">10000</prop>
+                <prop key="maxidle">25</prop>
+                <prop key="minidle">5</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+            </props>
+        </property>
+    </bean>
 
-    <!--<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">-->
-    <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />-->
-    <!--</bean>-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
 
-    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!--<bean id="deliveryDAO" class="com.ilboudofabrice.dao.DeliveryDAOImpl">-->
-    <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />-->
+        <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>-->
     <!--</bean>-->
     <!--<bean id="deliveryService" class="com.ilboudofabrice.service.DeliveryServiceImpl">-->
-    <!--<property name="deliveryDAO" ref="deliveryDAO"/>-->
+        <!--<property name="deliveryDAO" ref="deliveryDAO"/>-->
     <!--</bean>-->
 
-    <!--&lt;!&ndash;<bean id="shoppingCartDAO" class="com.ilboudofabrice.dao.impl.ShoppingCartDAOImpl">&ndash;&gt;-->
-    <!--&lt;!&ndash;<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />&ndash;&gt;-->
-    <!--&lt;!&ndash;</bean>&ndash;&gt;-->
-    <!--&lt;!&ndash;<bean id="shoppingCartService" class="com.ilboudofabrice.service.impl.ShoppingCartServiceImpl">&ndash;&gt;-->
-    <!--&lt;!&ndash;<property name="shoppingCartDAO" ref="shoppingCartDAO"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;</bean>&ndash;&gt;-->
+    <bean id="clientDAO" class="com.ilboudofabrice.dao.ClientDAOImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+    <bean id="clientService" class="com.ilboudofabrice.service.ClientServiceImpl">
+        <property name="clientDAO" ref="clientDAO"/>
+    </bean>
+
+    <!--<bean id="shoppingCartDAO" class="com.ilboudofabrice.dao.impl.ShoppingCartDAOImpl">-->
+    <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />-->
+    <!--</bean>-->
+    <!--<bean id="shoppingCartService" class="com.ilboudofabrice.service.impl.ShoppingCartServiceImpl">-->
+    <!--<property name="shoppingCartDAO" ref="shoppingCartDAO"/>-->
+    <!--</bean>-->
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-        <property name="prefix" value="/jsp/" />
-        <property name="suffix" value=".jsp" />
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/jsp/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!--<bean id="dbProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+        <!--<property name="location" value="classpath:database.properties" />-->
+    <!--</bean>-->
 </beans>
