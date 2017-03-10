@@ -10,7 +10,7 @@
     <!-- Enables the Spring MVC @Controller programming model -->
     <mvc:annotation-driven/>
 
-    <mvc:resources mapping="/images/**" location="classpath:/images/" />
+    <!--<mvc:resources mapping="/images/**" location="classpath:/images/" />-->
 
     <!-- database properties-->
     <!--<util:properties id="databaseProperties" location="classpath:/database.properties"/>-->
@@ -36,6 +36,7 @@
             <list>
                 <value>com.ilboudofabrice.domain.Delivery</value>
                 <value>com.ilboudofabrice.domain.Client</value>
+                <value>com.ilboudofabrice.domain.User</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -71,12 +72,13 @@
         <property name="clientDAO" ref="clientDAO"/>
     </bean>
 
-    <!--<bean id="shoppingCartDAO" class="com.ilboudofabrice.dao.impl.ShoppingCartDAOImpl">-->
-    <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />-->
-    <!--</bean>-->
-    <!--<bean id="shoppingCartService" class="com.ilboudofabrice.service.impl.ShoppingCartServiceImpl">-->
-    <!--<property name="shoppingCartDAO" ref="shoppingCartDAO"/>-->
-    <!--</bean>-->
+    <bean id="userDAO" class="com.ilboudofabrice.dao.UserDAOImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+    <bean id="userService" class="com.ilboudofabrice.service.UserServiceImpl">
+        <property name="userDAO" ref="userDAO"/>
+    </bean>
+
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>

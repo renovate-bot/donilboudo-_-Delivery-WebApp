@@ -4,28 +4,30 @@
     <head>
         <meta charset="UTF-8">
         <title>Page de connexion</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-        <link rel="stylesheet" type="text/css" href="../WEB-INF/resources/css/style.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+        <%@include file="resources/bootstrap_depandencies"%>
     </head>
     <body>
-        <div class="login">
+        <div class="container">
             <h1 align="center">Login</h1>
-            <form method="post" action="${pageContext.request.contextPath}/loginFromWeb">
-                <table align="center">
-                    <tr>
-                        <td><input type="text" name="u" placeholder="Username" required="required" /></td>
-                    </tr>
-                    <tr>
-                        <td><input type="password" name="p" placeholder="Password" required="required" /></td>
-                    </tr>
-                    <tr>
-                        <td align="center"> <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
 
-        <script src="../WEB-INF/resources/js/index.js"></script>
+            <div style="margin-left: 400px; margin-right: 400px;">
+                <c:if test="${not empty errorMessage}">
+                    <div class="alert alert-danger">
+                        <strong>${errorMessage}</strong>
+                    </div>
+                </c:if>
+                <form method="post" action="${pageContext.request.contextPath}/loginFromWeb" modelAttribute="loginBean">
+                    <div class="form-group">
+                        <label for="userName">Nom d'utilisateur:</label>
+                        <input type="text" class="form-control" id="userName" name="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe:</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-default">Connexion</button>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

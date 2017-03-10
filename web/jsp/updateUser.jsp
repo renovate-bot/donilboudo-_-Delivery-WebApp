@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Nouveau client</title>
+    <%@include file="resources/bootstrap_depandencies"%>
 </head>
 <body>
 <nav class="navbar navbar-inverse">

@@ -4,38 +4,15 @@
     <head>
         <meta charset="UTF-8">
         <title>Nouveau client</title>
+        <%@include file="resources/bootstrap_depandencies"%>
     </head>
-    <body>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#"></a>
-                </div>
-                <ul class="nav navbar-nav" style="margin-left: 35px;">
-                    <li><a href="${pageContext.request.contextPath}/home">Acceuil</a></li>
-                    <li class="active">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Utilisateurs
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="${pageContext.request.contextPath}/newUser">Ajouter</a></li>
-                            <li><a href="#">Supprimer</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="${pageContext.request.contextPath}/clients">Clients</a></li>
-                    <li><a href="#">Livraisons</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <%--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>--%>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Deconnexion</a></li>
-                </ul>
-            </div>
-        </nav>
+    <body onload="activeMenu()">
+         <%@include file="resources/menu.html"%>
 
         <h2 align="center">Nouveau utilisateur</h2>
 
         <div style="margin-left: 200px; margin-right: 200px;">
-            <form>
+            <form method="post" action="${pageContext.request.contextPath}/addUser">
                 <div class="form-group row">
                     <label for="firstName" class="col-2 col-form-label">Nom</label>
 
@@ -90,24 +67,22 @@
                 </div>
                 <div class="form-group row">
                     <button class="btn btn-primary" type="submit">Ajouter</button>
-                    <button class="btn btn-default" type="reset">Annuler</button>
+                    <button class="btn btn-default" type="reset" onclick="openUsersListPage()">Annuler</button>
                 </div>
             </form>
         </div>
 
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            function openUsersListPage()
+            {
+                window.location.href = '/users';
+            }
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-              integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-                crossorigin="anonymous"></script>
+            function activeMenu()
+            {
+                document.getElementById("users").className = "active"
+            }
+        </script>
     </body>
 </html>

@@ -2,6 +2,10 @@ package com.ilboudofabrice.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ilboudofabrice.dao.interfaces.UserDAO;
 import com.ilboudofabrice.domain.User;
 import com.ilboudofabrice.service.interfaces.UserService;
 
@@ -9,31 +13,50 @@ import com.ilboudofabrice.service.interfaces.UserService;
  * Created by filboudo on 2017-02-16.
  */
 public class UserServiceImpl implements UserService {
-    public void addUser() {
+    @Autowired
+    UserDAO userDAO;
 
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
     }
 
-    public void deleteUser(String id) {
-
+    @Transactional
+    public void addUser(String firstName, String lastName, String email, String phone, String login, String password, List<String> appAccesses) {
+        User user = new User(firstName, lastName, email, phone, login, password);
+        userDAO.addUser(user);
     }
 
-    public void removeUser(String id) {
-
+    @Transactional
+    public void deleteUser(String userId) {
+        userDAO.deleteUser(userId);
     }
 
-    public void updateLoginAndPassword(String login, String password) {
-
+    @Transactional
+    public void updateLoginAndPassword(String userId, String login, String password) {
+        userDAO.updateLoginAndPassword(userId, login, password);
     }
 
-    public void updatePassword(String password) {
-
+    @Transactional
+    public void updatePassword(String userId, String password) {
+        userDAO.updatePassword(userId, password);
     }
 
+    @Transactional
     public void updateAppAccess(List<String> appAccesses) {
 
     }
 
-    public User findUserByCredentials(String login, String password) {
-        return null;
+    @Transactional
+    public User findUserByCredentials(String userId, String login, String password) {
+        return userDAO.findUserByCredentials(userId, login, password);
+    }
+
+    @Transactional
+    public List<User> getUsers() {
+        return userDAO.getUsers();
+    }
+
+    public boolean isValidUser(String userName, String password) {
+        return userDAO.isValidUser(userName, password);
     }
 }

@@ -39,5 +39,6 @@
         <!--login urls-->
         <url-pattern>/loginFromWeb</url-pattern>
         <url-pattern>/loginFromMobile</url-pattern>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 </web-app>

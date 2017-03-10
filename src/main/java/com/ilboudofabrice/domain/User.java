@@ -1,36 +1,70 @@
 package com.ilboudofabrice.domain;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Proxy;
+
+import com.ilboudofabrice.util.PasswordHelper;
 import com.ilboudofabrice.util.RandomGUIDGenerator;
 
 /**
  * Created by filboudo on 2017-02-16.
  */
-public class User {
+@Entity
+@Table(name = "USER")
+@Proxy(lazy = false)
+public class User implements Serializable{
+    @Id
+    @Column(name = "user_id")
     private String id;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "phone")
     private String phone;
+
+    @Column(name = "login")
     private String login;
+
+    @Column(name = "password")
     private String password;
-    private List<String> appAccesses;
+
+//    private Set<Role> roles;
+
+
+//    private List<String> appAccesses;
 
     public User(){
 
     }
 
-    public User(String firstName, String lastName, String email, String phone, String login, String password, List<String> appAccesses){
-        this.id = RandomGUIDGenerator.generateRandomGUID();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.login = login;
-        this.password = password;
-        this.appAccesses = appAccesses;
-    }
+//    public User(String firstName, String lastName, String email, String phone, String login, String password, List<String> appAccesses){
+//        this.id = RandomGUIDGenerator.generateRandomGUID();
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.phone = phone;
+//        this.login = login;
+//        this.password = PasswordHelper.md5(password);
+//        this.appAccesses = appAccesses;
+//    }
 
     public User(String firstName, String lastName, String phone, String email, String login, String password) {
         this.id = RandomGUIDGenerator.generateRandomGUID();
@@ -39,7 +73,7 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.login = login;
-        this.password = password;
+        this.password = PasswordHelper.md5(password);
     }
 
     public String getId() {
@@ -98,11 +132,21 @@ public class User {
         this.password = password;
     }
 
-    public List<String> getAppAccesses() {
-        return appAccesses;
-    }
+//    @ManyToMany
+//    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    public Set<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(Set<Role> roles) {
+//        this.roles = roles;
+//    }
 
-    public void setAppAccesses(List<String> appAccesses) {
-        this.appAccesses = appAccesses;
-    }
+//    public List<String> getAppAccesses() {
+//        return appAccesses;
+//    }
+//
+//    public void setAppAccesses(List<String> appAccesses) {
+//        this.appAccesses = appAccesses;
+//    }
 }

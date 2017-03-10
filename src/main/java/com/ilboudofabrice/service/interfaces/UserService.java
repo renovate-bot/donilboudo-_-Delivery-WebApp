@@ -8,12 +8,19 @@ import java.util.List;
  * Created by filboudo on 2017-02-16.
  */
 public interface UserService {
-    void addUser();
-    void deleteUser(String id);
-    void removeUser(String id);
-    void updateLoginAndPassword(String login, String password);
-    void updatePassword(String password);
-    void updateAppAccess(List<String> appAccesses);
-    User findUserByCredentials(String login, String password);
+    void addUser(String firstName, String lastName, String email, String phone, String login, String password, List<String> appAccesses);
 
+    void deleteUser(String userId);
+
+    void updateLoginAndPassword(String userId, String login, String password);
+
+    void updatePassword(String userId, String password);
+
+    void updateAppAccess(List<String> appAccesses);
+
+    User findUserByCredentials(String userId, String login, String password);
+
+    List<User> getUsers();
+
+    boolean isValidUser(String userName, String password);
 }
