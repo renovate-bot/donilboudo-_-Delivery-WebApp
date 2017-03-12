@@ -22,7 +22,7 @@ public class ClientDAOImpl implements ClientDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    private Session getSession(){
+    private Session getSession() {
         Session session;
         try
         {
@@ -47,14 +47,19 @@ public class ClientDAOImpl implements ClientDAO {
     }
 
     public void removeClient(String id) {
-        Client client = getSession().load(Client.class, id);
-        if(client != null)
+        Client client = findClientById(id);
+        if (client != null)
         {
             getSession().delete(client);
         }
     }
 
     public Client findClientById(String id) {
+        Client client = getSession().load(Client.class, id);
+        if (client != null)
+        {
+            return client;
+        }
         return null;
     }
 

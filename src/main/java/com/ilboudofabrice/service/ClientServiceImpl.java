@@ -21,11 +21,6 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Transactional
-    public void addClient(Client client) {
-        clientDAO.addClient(client);
-    }
-
-    @Transactional
     public List<Client> getClients() {
         return clientDAO.getClients();
     }
@@ -37,7 +32,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Transactional
     public Client findClientById(String id) {
-        return null;
+        return clientDAO.findClientById(id);
     }
 
     @Transactional
@@ -47,5 +42,11 @@ public class ClientServiceImpl implements ClientService {
 
     public void updateClient(Client client) {
 
+    }
+
+    @Transactional
+    public void addClient(String name, String phone, String address, String country, String city) {
+        Client client = new Client(name, phone, address, country, city);
+        clientDAO.addClient(client);
     }
 }

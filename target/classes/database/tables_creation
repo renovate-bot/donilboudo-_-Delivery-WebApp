@@ -4,6 +4,38 @@
 --
 CREATE DATABASE delivery_manager;
 
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `USER_ID` varchar(36) NOT NULL,
+  `FIRST_NAME` varchar(255) NOT NULL,
+  `LAST_NAME` varchar(255) NOT NULL,
+  `EMAIL` varchar(255) DEFAULT NULL,
+  `PHONE` varchar(50) DEFAULT NULL,
+  `LOGIN` varchar(255) NOT NULL,
+  `PASSWORD` varchar(255) NOT NULL,
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`USER_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `LOGIN`, `PASSWORD`, `user_user_id`) VALUES
+('114FD07B-2BFF-4F6C-9182-19E98C4A4442', 'Ilboudo', 'Fabrice', NULL, '4182710361', 'fabrice', 'd47de916cacdb7bb6879a4013d8b7d7', NULL);
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`USER_ID`),
+  ADD KEY `FKqksf7qtc4t1b3347t1e72lirh` (`user_user_id`);
+
 
 --
 -- TABLE `client`
@@ -18,3 +50,70 @@ CREATE TABLE `client` (
   `CLIENT_CITY` varchar(255) DEFAULT NULL,
   `CREATION_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+--
+-- Index pour la table `client`
+--
+ALTER TABLE `client`
+  ADD PRIMARY KEY (`CLIENT_ID`);
+
+--
+-- Structure de la table `delivery`
+--
+
+CREATE TABLE `delivery` (
+  `delivery_id` varchar(36) NOT NULL,
+  `user_fk` varchar(36) NOT NULL,
+  `client_fk` varchar(36) NOT NULL,
+  `send_date` datetime NOT NULL,
+  `sender_references` varchar(255) NOT NULL,
+  `sender_comments` text NOT NULL,
+  `receiver_references` varchar(255) NOT NULL,
+  `receiver_address` varchar(255) NOT NULL,
+  `delivery_status` varchar(25) NOT NULL,
+  `receive_date` datetime NOT NULL,
+  `receiver_comments` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Index pour la table `delivery`
+--
+ALTER TABLE `delivery`
+  ADD PRIMARY KEY (`delivery_id`),
+  ADD KEY `user_fk` (`user_fk`),
+  ADD KEY `client_fk` (`client_fk`);
+
+--
+-- Foreign keys
+--
+ALTER TABLE delivery
+  ADD FOREIGN KEY (client_fk)
+  REFERENCES user(client_id)
+
+ALTER TABLE delivery
+  ADD FOREIGN KEY (user_fk)
+  REFERENCES user(user_id)
+
+
+--
+-- Structure de la table `session`
+--
+
+CREATE TABLE `session` (
+  `SESSION_ID` varchar(36) NOT NULL,
+  `USER_FK` varchar(36) NOT NULL,
+  `LOGIN_DATE` datetime DEFAULT NULL,
+  `LOGOUT_DATE` datetime DEFAULT NULL,
+  `user` tinyblob
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `session`
+--
+ALTER TABLE `session`
+  ADD PRIMARY KEY (`SESSION_ID`);

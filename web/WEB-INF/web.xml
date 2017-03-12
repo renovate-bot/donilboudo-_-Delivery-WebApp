@@ -40,5 +40,10 @@
         <url-pattern>/loginFromWeb</url-pattern>
         <url-pattern>/loginFromMobile</url-pattern>
         <url-pattern>/logout</url-pattern>
+
+        <!-- delivery urls-->
+        <url-pattern>/newDelivery</url-pattern>
+        <url-pattern>/deliveries</url-pattern>
+        <url-pattern>/closeDelivery</url-pattern>
     </servlet-mapping>
 </web-app>

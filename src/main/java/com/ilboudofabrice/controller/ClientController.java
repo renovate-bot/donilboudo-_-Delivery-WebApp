@@ -28,8 +28,7 @@ public class ClientController {
 
     @RequestMapping(path = "/addClient")
     public String addClient(@RequestParam String name, String phone, String address, String country, String city) {
-        Client client = new Client(name, phone, address, country, city);
-        clientService.addClient(client);
+        clientService.addClient(name, phone, address, country, city);
 
         return "redirect:clients";
     }

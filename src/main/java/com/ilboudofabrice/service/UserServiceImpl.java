@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDAO userDAO;
 
-    public void setUserDAO(UserDAO userDAO){
+    public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 
@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public User findUserByCredentials(String userId, String login, String password) {
-        return userDAO.findUserByCredentials(userId, login, password);
+    public User findUserByCredentials(String userName, String password) {
+        return userDAO.findUserByCredentials(userName, password);
     }
 
     @Transactional
@@ -58,5 +58,9 @@ public class UserServiceImpl implements UserService {
 
     public boolean isValidUser(String userName, String password) {
         return userDAO.isValidUser(userName, password);
+    }
+
+    public User findUserById(String userId) {
+        return userDAO.findUserById(userId);
     }
 }

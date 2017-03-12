@@ -18,9 +18,11 @@ public interface UserService {
 
     void updateAppAccess(List<String> appAccesses);
 
-    User findUserByCredentials(String userId, String login, String password);
+    User findUserByCredentials(String userName, String password);
 
     List<User> getUsers();
 
     boolean isValidUser(String userName, String password);
+
+    User findUserById(String userId);
 }

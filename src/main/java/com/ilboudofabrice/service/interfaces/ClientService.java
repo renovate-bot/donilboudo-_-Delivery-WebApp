@@ -8,8 +8,6 @@ import com.ilboudofabrice.domain.Client;
  * Created by filboudo on 2017-02-16.
  */
 public interface ClientService {
-    void addClient(Client client);
-
     List<Client> getClients();
 
     void removeClient(String id);
@@ -19,4 +17,6 @@ public interface ClientService {
     Client findClientByName(String name);
 
     void updateClient(Client client);
+
+    void addClient(String name, String phone, String address, String country, String city);
 }

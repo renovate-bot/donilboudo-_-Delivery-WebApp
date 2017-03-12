@@ -8,6 +8,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ilboudofabrice.domain.User;
+import com.ilboudofabrice.service.interfaces.LoginService;
 import com.ilboudofabrice.service.interfaces.UserService;
 import com.ilboudofabrice.util.PasswordHelper;
 
@@ -20,6 +22,9 @@ public class LoginController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    LoginService loginService;
+
     private String adminPassword = "d47de916cacdb7bb6879a4013d8b7d7";
     private String adminLogin = "fabrice";
 
@@ -30,9 +35,11 @@ public class LoginController {
 
     @RequestMapping(path = {"/loginFromWeb"})
     public String loginFromWeb(ModelMap modelMap, @RequestParam String userName, String password) {
-        boolean isValidUser = userService.isValidUser(userName, PasswordHelper.md5(password));
-        if (isValidUser)
+        User user = userService.findUserByCredentials(userName, PasswordHelper.md5(password));
+        if (user != null)
         {
+            loginService.login(user);
+
             return "redirect:home";
         }
         else
@@ -55,7 +62,9 @@ public class LoginController {
     }
 
     @RequestMapping(path = "/logout")
-    public String logout() {
+    public String logout(@RequestParam String sessionId) {
+        loginService.logout(sessionId);
+
         return "redirect:/";
     }
 }

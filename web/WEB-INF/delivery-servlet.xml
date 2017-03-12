@@ -37,16 +37,18 @@
                 <value>com.ilboudofabrice.domain.Delivery</value>
                 <value>com.ilboudofabrice.domain.Client</value>
                 <value>com.ilboudofabrice.domain.User</value>
+                <value>com.ilboudofabrice.domain.Session</value>
             </list>
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="maxwait">10000</prop>
                 <prop key="maxidle">25</prop>
                 <prop key="minidle">5</prop>
+                <prop key="format_sql">false</prop>
                 <prop key="hibernate.cache.use_second_level_cache">true</prop>
             </props>
         </property>
@@ -77,6 +79,20 @@
     </bean>
     <bean id="userService" class="com.ilboudofabrice.service.UserServiceImpl">
         <property name="userDAO" ref="userDAO"/>
+    </bean>
+
+    <bean id="loginDAO" class="com.ilboudofabrice.dao.LoginDAOImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+    <bean id="loginService" class="com.ilboudofabrice.service.LoginServiceImpl">
+        <property name="loginDAO" ref="loginDAO"/>
+    </bean>
+
+    <bean id="deliveryDAO" class="com.ilboudofabrice.dao.DeliveryDAOImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+    <bean id="deliveryService" class="com.ilboudofabrice.service.DeliveryServiceImpl">
+        <property name="deliveryDAO" ref="deliveryDAO"/>
     </bean>
 
 

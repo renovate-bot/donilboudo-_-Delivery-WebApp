@@ -39,7 +39,7 @@
 
                     <div class="col-10">
                         <select class="form-control" id="country" name="country">
-                            <option value="burkina_faso">Burkina Faso</option>
+                            <option value="Burkina Faso">Burkina Faso</option>
                         </select>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
 
                     <div class="col-10">
                         <select class="form-control" id="city" name="city">
-                            <option value="ouagadougou">Ouagadougou</option>
+                            <option value="Ouagadougou">Ouagadougou</option>
                         </select>
                     </div>
                 </div>
