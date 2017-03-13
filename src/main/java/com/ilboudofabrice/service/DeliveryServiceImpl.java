@@ -66,8 +66,8 @@ public class DeliveryServiceImpl implements DeliveryService {
             delivery.setSenderComments(senderComments);
             delivery.setReceiverAddress(receiverAddress);
             delivery.setStatus(DeliveryConstants.START);
-            delivery.setUserId(user.getId());
-            delivery.setClientId(client.getId());
+            delivery.setUser(user);
+            delivery.setClient(client);
             delivery.setReceiver(receiver);
 
             deliveryDAO.saveDelivery(delivery);
@@ -82,5 +82,17 @@ public class DeliveryServiceImpl implements DeliveryService {
     @Transactional
     public void closeDelivery(String deliveryId, String receiveDate, String receiverReferences, String receiverComments) {
         deliveryDAO.closeDelivery(deliveryId, receiveDate, receiverReferences, receiverComments);
+    }
+
+    public List<Delivery> getMyDeliveries(String userId) {
+       return deliveryDAO.getMyDeliveries(userId);
+    }
+
+    public List<Delivery> getOpenedDeliveries() {
+        return deliveryDAO.getDeliveriesByStatus(DeliveryConstants.START);
+    }
+
+    public List<Delivery> getClosedDeliveries() {
+        return deliveryDAO.getDeliveriesByStatus(DeliveryConstants.FINISH);
     }
 }

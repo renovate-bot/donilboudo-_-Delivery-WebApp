@@ -20,5 +20,11 @@ public interface DeliveryService {
 
     void closeDelivery(String deliveryId, String receiveDate, String receiverReferences, String receiverComments);
 
+    List<Delivery> getMyDeliveries(String userId);
+
+    List<Delivery> getOpenedDeliveries();
+
+    List<Delivery> getClosedDeliveries();
+
     //    void closeDelivery(String )
 }

@@ -7,11 +7,20 @@
             <li id="home"><a href="${pageContext.request.contextPath}/home">Acceuil</a></li>
             <li id="users"><a href="${pageContext.request.contextPath}/users">Utilisateurs</a></li>
             <li id="clients"><a href="${pageContext.request.contextPath}/clients">Clients</a></li>
-            <li id="deliveries"><a href="${pageContext.request.contextPath}/deliveries">Livraisons</a></li>
+            <li id="deliveries" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">Livraisons
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="${pageContext.request.contextPath}/newDelivery">Nouvelle livraison</a></li>
+                    <li><a href="${pageContext.request.contextPath}/deliveries">Toutes les livraisons</a></li>
+                    <li><a href="${pageContext.request.contextPath}/openedDeliveries">Livraisons en cours</a></li>
+                    <li><a href="${pageContext.request.contextPath}/closedDeliveries">Livraisons terminées</a> </li>
+                </ul>
+            </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <%--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>--%>
-            <li><a href="${pageContext.request.contextPath}/logout"><span class="glyphicon glyphicon-log-out"></span> Deconnexion</a></li>
+            <li><a href="${pageContext.request.contextPath}/logout"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
         </ul>
     </div>
 </nav>

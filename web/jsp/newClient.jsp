@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="phone" class="col-2 col-form-label">Telephone</label>
+                    <label for="phone" class="col-2 col-form-label">Téléphone</label>
 
                     <div class="col-10">
                         <input class="form-control" type="tel" placeholder="70-00-00-00" id="phone" name="phone" required>

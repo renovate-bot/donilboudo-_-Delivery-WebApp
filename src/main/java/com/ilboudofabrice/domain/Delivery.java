@@ -3,9 +3,12 @@ package com.ilboudofabrice.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.jws.soap.SOAPBinding;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -21,11 +24,13 @@ public class Delivery implements Serializable {
     @Column(name = "DELIVERY_ID")
     private String id;
 
-    @Column(name = "USER_ID")
-    private String userId;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
-    @Column(name = "CLIENT_ID")
-    private String clientId;
+    @ManyToOne
+    @JoinColumn(name = "CLIENT_ID")
+    private Client client;
 
     @Column(name = "SEND_DATE")
     private Date sendDate;
@@ -66,20 +71,20 @@ public class Delivery implements Serializable {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Date getSendDate() {

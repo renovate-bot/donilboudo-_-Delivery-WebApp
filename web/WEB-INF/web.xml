@@ -45,5 +45,9 @@
         <url-pattern>/newDelivery</url-pattern>
         <url-pattern>/deliveries</url-pattern>
         <url-pattern>/closeDelivery</url-pattern>
+        <url-pattern>/myDeliveries</url-pattern>
+        <url-pattern>/myOpenDeliveries</url-pattern>
+        <url-pattern>/openedDeliveries</url-pattern>
+        <url-pattern>/closedDeliveries</url-pattern>
     </servlet-mapping>
 </web-app>

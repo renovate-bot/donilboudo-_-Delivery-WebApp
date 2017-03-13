@@ -16,10 +16,10 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>Prenom</th>
+                        <th>Prénom</th>
                         <th>Nom</th>
                         <th>Email</th>
-                        <th>Telephone</th>
+                        <th>Téléphone</th>
                         <th>Nom d'utilisateur</th>
                         <th>Mot de passe</th>
                     </tr>

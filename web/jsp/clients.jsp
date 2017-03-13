@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Nouveau client</title>
+        <title>Clients</title>
         <%@include file="resources/bootstrap_depandencies"%>
     </head>
     <body  onload="activeMenu()">
@@ -17,7 +17,7 @@
                     <thead>
                         <tr>
                             <th>Nom</th>
-                            <th>Telephone</th>
+                            <th>Téléphone</th>
                             <th>Adresse</th>
                             <th>Pays</th>
                             <th>Ville</th>
@@ -34,7 +34,7 @@
                                 <td>${client.city}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">Mise a jour</button>
+                                        <button type="button" class="btn btn-primary">Mise à jour</button>
                                         <button type="button" class="btn btn-danger">Supprimer</button>
                                     </div>
                                 </td>

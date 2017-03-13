@@ -21,14 +21,14 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="lastName" class="col-2 col-form-label">Prenom</label>
+                    <label for="lastName" class="col-2 col-form-label">Prénom</label>
 
                     <div class="col-10">
                         <input class="form-control" type="text" id="lastName" name="lastName" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="phone" class="col-2 col-form-label">Telephone</label>
+                    <label for="phone" class="col-2 col-form-label">Téléphone</label>
 
                     <div class="col-10">
                         <input class="form-control" type="tel" placeholder="70-00-00-00" id="phone" name="phone" required>
@@ -42,21 +42,21 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="login" class="col-2 col-form-label">Login</label>
+                    <label for="login" class="col-2 col-form-label">Nom d'utlisateur</label>
 
                     <div class="col-10">
                         <input class="form-control" type="text" value="" id="login" name="login" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="password" class="col-2 col-form-label">Password</label>
+                    <label for="password" class="col-2 col-form-label">Mot de passe</label>
 
                     <div class="col-10">
                         <input class="form-control" type="text" id="password" name="password" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="appAccess" class="col-2 col-form-label">Acces</label>
+                    <label for="appAccess" class="col-2 col-form-label">Accès</label>
 
                     <div class="col-10">
                         <select multiple class="form-control" id="appAccess">

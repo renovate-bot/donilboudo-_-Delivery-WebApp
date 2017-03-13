@@ -17,12 +17,12 @@ public class DeliveryMapper {
     public static DeliveryDTO toDeliveryDTO(Delivery delivery, UserService userService, ClientService clientService) {
         DeliveryDTO dto = new DeliveryDTO();
         dto.setId(delivery.getId());
-        User user = userService.findUserById(delivery.getUserId());
+        User user = userService.findUserById(delivery.getUser().getId());
         if (user != null)
         {
             dto.setUser(user);
         }
-        Client client = clientService.findClientById(delivery.getClientId());
+        Client client = clientService.findClientById(delivery.getClient().getId());
         if (client != null)
         {
             dto.setClient(client);

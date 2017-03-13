@@ -19,4 +19,8 @@ public interface DeliveryDAO {
     Delivery getDeliveryById(String deliveryId);
 
     void closeDelivery(String deliveryId, String receiveDate, String receiverReferences, String receiverComments);
+
+    List<Delivery> getMyDeliveries(String userId);
+
+    List<Delivery> getDeliveriesByStatus(String status);
 }

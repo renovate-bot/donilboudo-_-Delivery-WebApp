@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="user" class="col-2 col-form-label">Employee</label>
+                    <label for="user" class="col-2 col-form-label">Employée</label>
 
                     <div class="col-10">
                         <select class="form-control" id="user" name="employeeId">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="senderReferences" class="col-2 col-form-label">Reference de l'envoyeur</label>
+                    <label for="senderReferences" class="col-2 col-form-label">Références de l'envoyeur</label>
 
                     <div class="col-10">
                         <input class="form-control" type="text" id="senderReferences" name="senderReferences" required>

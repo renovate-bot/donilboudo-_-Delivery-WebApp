@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ilboudofabrice.domain.Delivery;
-import com.ilboudofabrice.dto.DeliveryDTO;
-import com.ilboudofabrice.mapper.DeliveryMapper;
 import com.ilboudofabrice.service.interfaces.ClientService;
 import com.ilboudofabrice.service.interfaces.DeliveryService;
 import com.ilboudofabrice.service.interfaces.UserService;
@@ -50,17 +49,24 @@ public class DeliveryController {
         return "redirect:deliveries";
     }
 
-    @RequestMapping(path = "/myDeliveries")
-    public List<Delivery> getDeliveries(@RequestParam String userId) {
-        Delivery delivery1 = new Delivery();
-        //        delivery1.setId("1");
-        //        delivery1.setSendDate(new Date());
-        //        delivery1.setClientFK("1");
+    @RequestMapping(path = "/myDeliveries", method = RequestMethod.GET)
+    public @ResponseBody List<Delivery> myDeliveries(@RequestParam String userId) {
+        if (userId != null && !userId.isEmpty())
+        {
+            return deliveryService.getMyDeliveries(userId);
+        }
 
-        List<Delivery> deliveries = new ArrayList<Delivery>();
-        deliveries.add(delivery1);
+        return new ArrayList<Delivery>();
+    }
 
-        return deliveries;
+    @RequestMapping(path = "/myOpenDeliveries", method = RequestMethod.GET)
+    public @ResponseBody List<Delivery> myOpenDeliveries(@RequestParam String userId){
+        if (userId != null && !userId.isEmpty())
+        {
+            return deliveryService.getMyOpenDeliveries(userId);
+        }
+
+        return new ArrayList<Delivery>();
     }
 
     @RequestMapping(path = "/delivery/{id}")
@@ -75,8 +81,7 @@ public class DeliveryController {
             Delivery delivery = deliveryService.getDeliveryById(id);
             if (delivery != null)
             {
-                DeliveryDTO deliveryDTO = DeliveryMapper.toDeliveryDTO(delivery, userService, clientService);
-                modelMap.put("delivery", deliveryDTO);
+                modelMap.put("delivery", delivery);
             }
         }
 
@@ -103,8 +108,22 @@ public class DeliveryController {
         List<Delivery> deliveries = deliveryService.getDeliveries();
         if (deliveries.size() > 0)
         {
-            modelMap.put("deliveries", DeliveryMapper.toDeliveriesDTO(deliveries, userService, clientService));
+            modelMap.put("deliveries", deliveries);
         }
+
+        return "deliveries";
+    }
+
+    @RequestMapping(path = "/openedDeliveries", method = RequestMethod.GET)
+    public String openedDeliveries(ModelMap modelMap){
+        modelMap.put("deliveries", deliveryService.getOpenedDeliveries());
+
+        return "deliveries";
+    }
+
+    @RequestMapping(path = "/closedDeliveries", method = RequestMethod.GET)
+    public String closedDeliveries(ModelMap modelMap){
+        modelMap.put("deliveries", deliveryService.getClosedDeliveries());
 
         return "deliveries";
     }

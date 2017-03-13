@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Nouveau client</title>
+        <title>Livraisons</title>
         <%@include file="resources/bootstrap_depandencies"%>
     </head>
     <body  onload="activeMenu()">

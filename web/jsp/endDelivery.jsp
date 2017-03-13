@@ -15,7 +15,7 @@
             <c:if test="${not empty delivery}">
                 <form action="${pageContext.request.contextPath}/closeDelivery/${delivery.id}", method="post">
                     <div class="form-group row">
-                        <label for="receiveDate" class="col-2 col-form-label">Date de receiption</label>
+                        <label for="receiveDate" class="col-2 col-form-label">Date de réceiption</label>
 
                         <div class='input-group date' id='receiveDate'> <input type='text' class="form-control" name="receiveDate" required/>
                             <span class="input-group-addon">
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="receiverReferences" class="col-2 col-form-label">Reference du receveur</label>
+                        <label for="receiverReferences" class="col-2 col-form-label">Références du receveur</label>
 
                         <div class="col-10">
                             <input class="form-control" type="text" value="" id="receiverReferences" name="receiverReferences" required>
