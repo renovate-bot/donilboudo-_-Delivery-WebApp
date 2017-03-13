@@ -22,6 +22,7 @@
                         <th>Téléphone</th>
                         <th>Nom d'utilisateur</th>
                         <th>Mot de passe</th>
+                        <th>Role</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,12 @@
                             <td>${user.phone}</td>
                             <td>${user.login}</td>
                             <td>${user.password}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${user.role == 'ADMIN'}">Administrateur</c:when>
+                                    <c:when test="${user.role == 'EMPLOYEE'}">Employée</c:when>
+                                </c:choose>
+                            </td>
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">Mise a jour</button>

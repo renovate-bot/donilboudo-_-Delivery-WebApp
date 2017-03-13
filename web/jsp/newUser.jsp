@@ -56,12 +56,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="appAccess" class="col-2 col-form-label">Accès</label>
+                    <label for="role" class="col-2 col-form-label">Role</label>
 
                     <div class="col-10">
-                        <select multiple class="form-control" id="appAccess">
-                            <option value="web">Web</option>
-                            <option value="mobile">Mobile</option>
+                        <select class="form-control" id="role" name="role">
+                            <option value="ADMIN">Administrateur</option>
+                            <option value="EMPLOYEE">Employée</option>
                         </select>
                     </div>
                 </div>

@@ -1,7 +1,6 @@
 package com.ilboudofabrice.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
     @RequestMapping(path = "/home")
-    public String home(ModelMap modelMap){
+    public String home(){
         return "home";
     }
 }

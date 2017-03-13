@@ -66,18 +66,21 @@ public class DeliveryDAOImpl implements DeliveryDAO {
     }
 
     public List<Delivery> getMyOpenDeliveries(String userId) {
-        List<Delivery> myOpenDeliveries = new ArrayList<Delivery>();
-        List<Delivery> deliveries = getMyDeliveries(userId);
-
-        for(Delivery delivery : deliveries)
+        String hql = "from Delivery where user.id = :userId and status = :status";
+        try
         {
-            if(delivery.getStatus().equals(DeliveryConstants.START))
-            {
-                myOpenDeliveries.add(delivery);
-            }
+            Query query = getSession().createQuery(hql, Delivery.class);
+            query.setParameter("userId", userId);
+            query.setParameter("status", DeliveryConstants.START);
+
+            return query.list();
+        }
+        catch (Exception ex)
+        {
+            new ArrayList<Delivery>();
         }
 
-        return myOpenDeliveries;
+        return new ArrayList<Delivery>();
     }
 
     public Delivery getDeliveryById(String deliveryId) {
@@ -98,20 +101,23 @@ public class DeliveryDAOImpl implements DeliveryDAO {
     }
 
     public List<Delivery> getMyDeliveries(String userId) {
-        List<Delivery> myDeliveries = new ArrayList<Delivery>();
-        List<Delivery> deliveries = getDeliveries();
-        for (Delivery delivery : deliveries)
+        String hql = "from Delivery where user.id = :userId";
+        try
         {
-            if(delivery.getUser().getId().equals(userId))
-            {
-                myDeliveries.add(delivery);
-            }
+            Query query = getSession().createQuery(hql, Delivery.class);
+            query.setParameter("userId", userId);
+
+            return query.list();
+        }
+        catch (Exception ex)
+        {
+            new ArrayList<Delivery>();
         }
 
-        return myDeliveries;
+        return new ArrayList<Delivery>();
     }
 
-    public List<Delivery> getDeliveriesByStatus(String status){
+    public List<Delivery> getDeliveriesByStatus(String status) {
         List<Delivery> deliveries = new ArrayList<Delivery>();
         String hql = "from Delivery where status = :status";
         try

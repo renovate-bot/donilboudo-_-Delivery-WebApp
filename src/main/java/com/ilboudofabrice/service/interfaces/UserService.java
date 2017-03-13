@@ -8,7 +8,7 @@ import java.util.List;
  * Created by filboudo on 2017-02-16.
  */
 public interface UserService {
-    void addUser(String firstName, String lastName, String email, String phone, String login, String password, List<String> appAccesses);
+    void addUser(String firstName, String lastName, String email, String phone, String login, String password, String role);
 
     void deleteUser(String userId);
 

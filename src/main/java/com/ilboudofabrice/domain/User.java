@@ -46,10 +46,8 @@ public class User implements Serializable{
     @Column(name = "password")
     private String password;
 
-//    private Set<Role> roles;
-
-
-//    private List<String> appAccesses;
+    @Column(name = "ROLE")
+    private String role;
 
     public User(){
 
@@ -66,7 +64,7 @@ public class User implements Serializable{
 //        this.appAccesses = appAccesses;
 //    }
 
-    public User(String firstName, String lastName, String phone, String email, String login, String password) {
+    public User(String firstName, String lastName, String phone, String email, String login, String password, String role) {
         this.id = RandomGUIDGenerator.generateRandomGUID();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -74,6 +72,7 @@ public class User implements Serializable{
         this.phone = phone;
         this.login = login;
         this.password = PasswordHelper.md5(password);
+        this.role = role;
     }
 
     public String getId() {
@@ -132,21 +131,11 @@ public class User implements Serializable{
         this.password = password;
     }
 
-//    @ManyToMany
-//    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    public Set<Role> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(Set<Role> roles) {
-//        this.roles = roles;
-//    }
+    public String getRole() {
+        return role;
+    }
 
-//    public List<String> getAppAccesses() {
-//        return appAccesses;
-//    }
-//
-//    public void setAppAccesses(List<String> appAccesses) {
-//        this.appAccesses = appAccesses;
-//    }
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

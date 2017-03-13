@@ -21,8 +21,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public void addUser(String firstName, String lastName, String email, String phone, String login, String password, List<String> appAccesses) {
-        User user = new User(firstName, lastName, email, phone, login, password);
+    public void addUser(String firstName, String lastName, String email, String phone, String login, String password, String role) {
+        User user = new User(firstName, lastName, email, phone, login, password, role);
         userDAO.addUser(user);
     }
 

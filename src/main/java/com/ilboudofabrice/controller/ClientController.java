@@ -1,15 +1,18 @@
 package com.ilboudofabrice.controller;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ilboudofabrice.domain.Client;
+import com.ilboudofabrice.service.LoginServiceImpl;
 import com.ilboudofabrice.service.interfaces.ClientService;
+import com.ilboudofabrice.service.interfaces.LoginService;
+import com.ilboudofabrice.util.LoginConstants;
 
 /**
  * Created by filboudo on 2017-02-16.
@@ -19,24 +22,49 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    private static String NEW_CLIENT_PAGE = "newClient";
+    @Autowired
+    LoginService loginService;
 
-    @RequestMapping(path = "/newClient")
-    public String newClientPage() {
-        return NEW_CLIENT_PAGE;
+    @RequestMapping(path = "/newClient", method = RequestMethod.GET)
+    public String newClientPage(HttpSession httpSession) {
+        String userSessionId = (String) httpSession.getAttribute(LoginServiceImpl.USER_SESSION);
+        if (loginService.isValidSession(userSessionId))
+        {
+            return "newClient";
+        }
+        else
+        {
+            return LoginConstants.REDIRECT_LOGIN_PAGE;
+        }
     }
 
-    @RequestMapping(path = "/addClient")
-    public String addClient(@RequestParam String name, String phone, String address, String country, String city) {
-        clientService.addClient(name, phone, address, country, city);
+    @RequestMapping(path = "/newClient", method = RequestMethod.POST)
+    public String addClient(HttpSession httpSession, @RequestParam String name, String phone, String address, String country, String city) {
+        String userSessionId = (String) httpSession.getAttribute(LoginServiceImpl.USER_SESSION);
+        if (loginService.isValidSession(userSessionId))
+        {
+            clientService.addClient(name, phone, address, country, city);
 
-        return "redirect:clients";
+            return "redirect:clients";
+        }
+        else
+        {
+            return LoginConstants.REDIRECT_LOGIN_PAGE;
+        }
     }
 
-    @RequestMapping(path = "/clients")
-    public String getClients(ModelMap modelMap) {
-        List<Client> clients = clientService.getClients();
-        modelMap.put("clients", clients);
-        return "clients";
+    @RequestMapping(path = "/clients", method = RequestMethod.GET)
+    public String getClients(ModelMap modelMap, HttpSession httpSession) {
+        String userSessionId = (String) httpSession.getAttribute(LoginServiceImpl.USER_SESSION);
+        if (loginService.isValidSession(userSessionId))
+        {
+            modelMap.put("clients", clientService.getClients());
+
+            return "clients";
+        }
+        else
+        {
+            return LoginConstants.REDIRECT_LOGIN_PAGE;
+        }
     }
 }

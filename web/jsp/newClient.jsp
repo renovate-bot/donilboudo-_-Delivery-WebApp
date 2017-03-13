@@ -12,7 +12,7 @@
         <h2 align="center">Nouveau client</h2>
 
         <div style="margin-left: 200px; margin-right: 200px;">
-            <form action="${pageContext.request.contextPath}/addClient">
+            <form action="${pageContext.request.contextPath}/newClient", method="post">
                 <div class="form-group row">
                     <label for="name" class="col-2 col-form-label">Nom</label>
 

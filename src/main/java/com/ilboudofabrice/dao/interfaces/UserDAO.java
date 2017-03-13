@@ -16,8 +16,6 @@ public interface UserDAO {
 
     void updatePassword(String userId, String password);
 
-    void updateAppAccess(List<String> appAccesses);
-
     User findUserByCredentials(String userName, String password);
 
     List<User> getUsers();

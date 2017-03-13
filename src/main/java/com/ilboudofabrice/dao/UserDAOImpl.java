@@ -1,13 +1,10 @@
 package com.ilboudofabrice.dao;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
-
 import org.hibernate.HibernateException;
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -57,10 +54,6 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public void updatePassword(String userId, String password) {
-
-    }
-
-    public void updateAppAccess(List<String> appAccesses) {
 
     }
 

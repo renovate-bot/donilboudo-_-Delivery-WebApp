@@ -11,4 +11,6 @@ public interface LoginDAO {
     boolean isLogin(String sessionId);
 
     void logout(String sessionId);
+
+    boolean isValidSession(String userSessionId);
 }

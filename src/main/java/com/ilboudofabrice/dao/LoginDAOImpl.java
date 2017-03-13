@@ -56,4 +56,10 @@ public class LoginDAOImpl implements LoginDAO {
             session.setLogoutDate(new Date());
         }
     }
+
+    public boolean isValidSession(String userSessionId) {
+        com.ilboudofabrice.domain.Session session = getSession().load(com.ilboudofabrice.domain.Session.class, userSessionId);
+
+        return session != null && session.getLogoutDate() == null;
+    }
 }

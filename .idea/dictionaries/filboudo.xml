@@ -2,18 +2,24 @@
   <dictionary name="filboudo">
     <words>
       <w>acceuil</w>
+      <w>accès</w>
+      <w>administrateur</w>
       <w>adresse</w>
+      <w>ajouter</w>
       <w>annuler</w>
       <w>commentaires</w>
+      <w>droits</w>
       <w>déconnexion</w>
       <w>employée</w>
       <w>fabrice</w>
       <w>livraison</w>
       <w>livraisons</w>
+      <w>mise</w>
       <w>navbar</w>
       <w>nouveau</w>
       <w>nouvelle</w>
       <w>prenom</w>
+      <w>prénom</w>
       <w>receiption</w>
       <w>receveur</w>
       <w>réceiption</w>
@@ -24,6 +30,7 @@
       <w>téléphone</w>
       <w>utilisateur</w>
       <w>utilisateurs</w>
+      <w>vous</w>
     </words>
   </dictionary>
 </component>

@@ -3,6 +3,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
         <title>Page de connexion</title>
         <%@include file="resources/bootstrap_depandencies"%>
     </head>
