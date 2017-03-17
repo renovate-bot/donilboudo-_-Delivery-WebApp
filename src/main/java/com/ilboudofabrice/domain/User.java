@@ -1,15 +1,10 @@
 package com.ilboudofabrice.domain;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -25,25 +20,25 @@ import com.ilboudofabrice.util.RandomGUIDGenerator;
 @Proxy(lazy = false)
 public class User implements Serializable{
     @Id
-    @Column(name = "user_id")
+    @Column(name = "USER_ID")
     private String id;
 
-    @Column(name = "first_name")
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "LAST_NAME")
     private String lastName;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phone")
+    @Column(name = "PHONE")
     private String phone;
 
-    @Column(name = "login")
-    private String login;
+    @Column(name = "USER_NAME")
+    private String userName;
 
-    @Column(name = "password")
+    @Column(name = "PASSWORD")
     private String password;
 
     @Column(name = "ROLE")
@@ -53,24 +48,24 @@ public class User implements Serializable{
 
     }
 
-//    public User(String firstName, String lastName, String email, String phone, String login, String password, List<String> appAccesses){
+//    public User(String firstName, String lastName, String email, String phone, String userName, String password, List<String> appAccesses){
 //        this.id = RandomGUIDGenerator.generateRandomGUID();
 //        this.firstName = firstName;
 //        this.lastName = lastName;
 //        this.email = email;
 //        this.phone = phone;
-//        this.login = login;
+//        this.userName = userName;
 //        this.password = PasswordHelper.md5(password);
 //        this.appAccesses = appAccesses;
 //    }
 
-    public User(String firstName, String lastName, String phone, String email, String login, String password, String role) {
+    public User(String firstName, String lastName, String phone, String email, String userName, String password, String role) {
         this.id = RandomGUIDGenerator.generateRandomGUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.login = login;
+        this.userName = userName;
         this.password = PasswordHelper.md5(password);
         this.role = role;
     }
@@ -115,12 +110,12 @@ public class User implements Serializable{
         this.phone = phone;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

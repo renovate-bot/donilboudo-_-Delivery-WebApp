@@ -58,7 +58,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public User findUserByCredentials(String userName, String password) {
-        String hql = "select * from User where login = :userName and password = :password";
+        String hql = "select * from USER where user_name = :userName and password = :password";
         Query query = (Query) getSession().createNativeQuery(hql, User.class);
         query.setParameter("userName", userName);
         query.setParameter("password", password);

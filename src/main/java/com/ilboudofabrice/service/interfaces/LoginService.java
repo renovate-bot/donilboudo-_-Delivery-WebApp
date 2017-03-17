@@ -13,4 +13,6 @@ public interface LoginService {
     void logout(String sessionId);
 
     boolean isValidSession(String userSessionId);
+
+    User getLoginUser(String userSessionId);
 }

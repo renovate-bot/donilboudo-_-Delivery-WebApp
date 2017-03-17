@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ilboudofabrice.domain.User;
 import com.ilboudofabrice.service.LoginServiceImpl;
 import com.ilboudofabrice.service.interfaces.LoginService;
 import com.ilboudofabrice.service.interfaces.UserService;
@@ -32,10 +34,10 @@ public class UserController {
     }
 
     @RequestMapping(path = "/addUser", method = RequestMethod.POST)
-    public String addUser(HttpSession httpSession, @RequestParam String firstName, String lastName, String phone, String email, String login, String password, String role) {
+    public String addUser(HttpSession httpSession, @RequestParam String firstName, String lastName, String phone, String email, String userName, String password, String role) {
         if (loginService.isValidSession((String) httpSession.getAttribute(LoginServiceImpl.USER_SESSION)))
         {
-            userService.addUser(firstName, lastName, phone, email, login, password, role);
+            userService.addUser(firstName, lastName, phone, email, userName, password, role);
 
             return "redirect:/users";
         }
@@ -68,5 +70,17 @@ public class UserController {
         {
             return LoginConstants.REDIRECT_LOGIN_PAGE;
         }
+    }
+
+    @RequestMapping(path = "/mobile/user", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    User getUser(HttpSession httpSession) {
+        String userSessionId = (String) httpSession.getAttribute(LoginServiceImpl.USER_SESSION);
+        if (loginService.isValidSession(userSessionId))
+        {
+            return loginService.getLoginUser(userSessionId);
+        }
+        return null;
     }
 }

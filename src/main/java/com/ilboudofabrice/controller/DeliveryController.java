@@ -70,6 +70,23 @@ public class DeliveryController {
         }
     }
 
+    @RequestMapping(path = "/mobile/newDelivery", method = RequestMethod.POST)
+    public void newDeliveryFromMobile(
+            HttpSession httpSession,
+            @RequestParam String clientId,
+            String employeeId,
+            String sendDate,
+            String senderReferences,
+            String senderComments,
+            String receiver,
+            String receiverAddress
+    ) {
+        if (loginService.isValidSession((String) httpSession.getAttribute(LoginServiceImpl.USER_SESSION)))
+        {
+            deliveryService.addNewDelivery(clientId, employeeId, sendDate, senderReferences, senderComments, receiver, receiverAddress);
+        }
+    }
+
     @RequestMapping(path = "/myDeliveries", method = RequestMethod.GET)
     public
     @ResponseBody
@@ -94,9 +111,15 @@ public class DeliveryController {
         return new ArrayList<Delivery>();
     }
 
-    @RequestMapping(path = "/delivery/{id}")
-    public void getDeliveryById(@PathVariable String deliveryId) {
-
+    @RequestMapping(path = "/delivery")
+    public
+    @ResponseBody
+    Delivery getDeliveryById(@RequestParam String deliveryId) {
+        if (deliveryId != null && !deliveryId.isEmpty())
+        {
+            return deliveryService.getDeliveryById(deliveryId);
+        }
+        return null;
     }
 
     @RequestMapping(path = "/closeDelivery/{id}", method = RequestMethod.GET)
@@ -134,6 +157,18 @@ public class DeliveryController {
         else
         {
             return LoginConstants.REDIRECT_LOGIN_PAGE;
+        }
+    }
+
+    @RequestMapping(path = "/mobile/closeDelivery", method = RequestMethod.POST)
+    public void closeDeliveryFromMobile(HttpSession httpSession, @RequestParam String deliveryId, String receiveDate, String receiverReferences, String receiverComments) {
+        String userSessionId = (String) httpSession.getAttribute(LoginServiceImpl.USER_SESSION);
+        if (loginService.isValidSession(userSessionId))
+        {
+            if (deliveryId != null && !deliveryId.isEmpty())
+            {
+                deliveryService.closeDelivery(deliveryId, receiveDate, receiverReferences, receiverComments);
+            }
         }
     }
 

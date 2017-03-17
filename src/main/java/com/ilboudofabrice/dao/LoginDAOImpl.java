@@ -50,7 +50,7 @@ public class LoginDAOImpl implements LoginDAO {
     }
 
     public void logout(String sessionId) {
-        com.ilboudofabrice.domain.Session session = getSession().load(com.ilboudofabrice.domain.Session.class, sessionId);
+        com.ilboudofabrice.domain.Session session = getUserSession(sessionId);
         if (session != null)
         {
             session.setLogoutDate(new Date());
@@ -58,8 +58,21 @@ public class LoginDAOImpl implements LoginDAO {
     }
 
     public boolean isValidSession(String userSessionId) {
-        com.ilboudofabrice.domain.Session session = getSession().load(com.ilboudofabrice.domain.Session.class, userSessionId);
+        com.ilboudofabrice.domain.Session session = getUserSession(userSessionId);
 
         return session != null && session.getLogoutDate() == null;
+    }
+
+    public User getLoginUser(String userSessionId) {
+        com.ilboudofabrice.domain.Session session = getUserSession(userSessionId);
+        if (session != null)
+        {
+            return session.getUser();
+        }
+        return null;
+    }
+
+    private com.ilboudofabrice.domain.Session getUserSession(String userSessionId) {
+        return getSession().load(com.ilboudofabrice.domain.Session.class, userSessionId);
     }
 }

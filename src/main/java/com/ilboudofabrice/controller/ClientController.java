@@ -1,5 +1,8 @@
 package com.ilboudofabrice.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +11,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ilboudofabrice.domain.Client;
 import com.ilboudofabrice.service.LoginServiceImpl;
 import com.ilboudofabrice.service.interfaces.ClientService;
 import com.ilboudofabrice.service.interfaces.LoginService;
@@ -65,6 +70,21 @@ public class ClientController {
         else
         {
             return LoginConstants.REDIRECT_LOGIN_PAGE;
+        }
+    }
+
+    @RequestMapping(path = "/mobile/clients", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Client> getClientsFromMobile(HttpSession httpSession) {
+        String userSessionId = (String) httpSession.getAttribute(LoginServiceImpl.USER_SESSION);
+        if (loginService.isValidSession(userSessionId))
+        {
+            return clientService.getClients();
+        }
+        else
+        {
+            return new ArrayList<Client>();
         }
     }
 }

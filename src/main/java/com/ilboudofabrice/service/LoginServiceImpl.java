@@ -24,7 +24,7 @@ public class LoginServiceImpl implements LoginService {
     @Transactional
     public String login(User user) {
         String sessionId = RandomGUIDGenerator.generateRandomGUID();
-        loginDAO.login(sessionId, user);
+//        loginDAO.login(sessionId, user);
 
         return sessionId;
     }
@@ -42,5 +42,9 @@ public class LoginServiceImpl implements LoginService {
     @Transactional
     public boolean isValidSession(String userSessionId) {
         return (userSessionId != null && !userSessionId.isEmpty()) && loginDAO.isValidSession(userSessionId);
+    }
+
+    public User getLoginUser(String userSessionId) {
+        return loginDAO.getLoginUser(userSessionId);
     }
 }

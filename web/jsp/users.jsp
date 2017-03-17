@@ -32,7 +32,7 @@
                             <td>${user.lastName}</td>
                             <td>${user.email}</td>
                             <td>${user.phone}</td>
-                            <td>${user.login}</td>
+                            <td>${user.userName}</td>
                             <td>${user.password}</td>
                             <td>
                                 <c:choose>

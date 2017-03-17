@@ -62,9 +62,9 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="login" class="col-2 col-form-label">Login</label>
+            <label for="userName" class="col-2 col-form-label">Login</label>
             <div class="col-10">
-                <input class="form-control" type="text" value="" id="login" name="login" required>
+                <input class="form-control" type="text" value="" id="userName" name="userName" required>
             </div>
         </div>
         <div class="form-group row">
